@@ -41,6 +41,15 @@ X_resampled, y_resampled = smote.fit_resample(X, y)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
+def tampilkan_informasi_data(data):
+    print("\nInformasi Dataset:")
+    print(f"Jumlah Baris: {data.shape[0]}")
+    print(f"Jumlah Kolom: {data.shape[1]}")
+    print("\nLima Baris Pertama Dataset:")
+    print(data.head())
+    print("\nLima Baris Terakhir Dataset:")
+    print(data.tail())
+
 model_knn = KNeighborsClassifier(n_neighbors=3)
 model_nb = GaussianNB()
 model_dt = DecisionTreeClassifier(random_state=42)
@@ -79,6 +88,10 @@ akurasi_nb = accuracy_score(y_test, y_pred_nb)
 model_dt.fit(X_train, y_train)
 y_pred_dt = model_dt.predict(X_test)
 akurasi_dt = accuracy_score(y_test, y_pred_dt)
+
+if __name__ == "__main__":
+    tampilkan_informasi_data(data)
+    print(f"")
 
 print(f"Akurasi KNN: {akurasi_knn * 100:.2f}%")
 print(f"Akurasi Naive Bayes: {akurasi_nb * 100:.2f}%")
